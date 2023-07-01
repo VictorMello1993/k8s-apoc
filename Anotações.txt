@@ -1,0 +1,4 @@
+Padrão sidecar: Consiste em ter um container principal contendo toda a aplicação rodando, mais os containers auxiliares somente para 
+		cumprir requisitos não funcionais (ex: gerenciamento de logs, número de usuários acessando aplicação simultaneamente,
+						       desempenho, segurança e até mesmo a escalabilidade), sem a necessidade de 
+		codificação de tais requisitos.

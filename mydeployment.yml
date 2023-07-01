@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      # Aqui define que todos os pods que esse ReplicaSet irá gerenciar terão um label app=mypod
+      app: mypod
+
+  # Aqui será a definição da estrutura de um Pod que um ReplicaSet irá gerenciar -> template
+  template:
+    metadata:
+      labels:
+        app: mypod
+    spec:
+      containers:
+        - name: app-web
+          image: fabricioveronez/web-page:blue
+          ports: 
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mydeployment-service
+spec:
+  selector:
+    app: mypod
+  ports:
+  - protocol: TCP
+    port: 80
+    nodePort: 30000
+  type: NodePort

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myreplicaset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      # Aqui define que todos os pods que esse ReplicaSet irá gerenciar terão um label app=mypod
+      app: mypod
+
+  # Aqui será a definição da estrutura de um Pod que um ReplicaSet irá gerenciar -> template
+  template:
+    metadata:
+      labels:
+        app: mypod
+    spec:
+      containers:
+        - name: app-web
+          image: fabricioveronez/web-page:green
+          ports: 
+            - containerPort: 80
