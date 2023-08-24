@@ -15,6 +15,7 @@ spec:
       labels:
         app: mypod
     spec:
+    # Aqui será definida a estrutura de um container de um pod que será executado
       containers:
         - name: app-web
           image: fabricioveronez/web-page:blue
@@ -26,10 +27,14 @@ kind: Service
 metadata:
   name: mydeployment-service
 spec:
+
+  # Aqui aponta qual o label que está definido nos pods
   selector:
     app: mypod
+
   ports:
   - protocol: TCP
     port: 80
+    name: http
     nodePort: 30000
   type: NodePort
